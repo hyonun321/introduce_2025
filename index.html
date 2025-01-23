@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 페이지</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .profile-section {
+            background-color: #212529;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        .profile-section .container {
+            display:flex;
+            position: relative;
+            z-index: 2;
+            flex-direction: column;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #212529 0%, #495057 100%);
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 50%;
+        }
+
+        .content-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            top: 0;
+        }
+
+        .content-card:hover {
+            top: -5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .mbti-tag {
+            background: #212529;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mbti-tag:hover {
+            transform: translateX(5px);
+            background: #343a40;
+        }
+
+        .experience-item {
+            border-left: 3px solid #212529;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            padding-left: 25px;
+            border-left-color: #495057;
+        }
+
+        .hobby-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            top: 0;
+        }
+
+        .hobby-card:hover {
+            top: -5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .future-plan {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .future-plan:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .share-section {
+            background-color: #212529;
+            color: white;
+        }
+
+        .share-section .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .list-unstyled li {
+            transition: all 0.3s ease;
+            padding-left: 0;
+        }
+
+        .list-unstyled li:hover {
+            padding-left: 10px;
+            color: #495057;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 30px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<section class="profile-section">
+  <div class="container">
+    <!-- row에 justify-content-center 적용 -->
+    <div class="row justify-content-center align-items-center fade-in">
+      <!-- 가운데 정렬을 위해 col-md-8만 사용 -->
+      <div class="col-md-8">
+        <div class="row align-items-center">
+          <div class="col-md-5 text-center text-md-start d-flex justify-content-center">
+            <img src="./images/me.webp" alt="프로필 이미지" class="profile-img mb-4 mb-md-0">
+          </div>
+          <div class="col-md-7">
+            <h1 class="display-4 fw-bold mb-4">안녕하세요!<br>김현훈입니다</h1>
+            <p class="lead">같이 일하고싶은 개발자를 꿈꾸고 있습니다<br> + 타업계에서 2년정도 일한경험이 있습니다 </p>
+            <div class="mbti-tag">ISFP</div>
+            <div class="mbti-tag">프론트엔드</div>
+            <div class="mbti-tag">전자공학과</div>
+            <div class="mbti-tag">유쾌한편</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">제일 좋았던 경험</h2>
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <img src="./images/kaze1.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0 fade-in">
+                    <img src="./images/kaze2.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0 fade-in">
+                    <img src="./images/kaze3.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0 fade-in">
+                    <img src="./images/kaze4.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0 fade-in">
+                    <br>
+                    <br>
+                    <br>
+                    <div class="experience-item fade-in">
+                        <h4>후지이 카제 콘서트 내한 24.12.14</h4>
+                        <a href="https://youtube.com/playlist?list=PLf9d4aeFSkSTrkZE3TqYTxw6ipH6lTy1N&si=BWMQ0Une66EvdF7Q" target="_blank"> 세트리스트</a>
+                        <p>고척돔에서 후지이카제 Best 2024 라이브를 듣고왔습니다. jpop(vaundy, 히게단, Mrs. green apple) 좋아합니다</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">요즘 취미와 관심사</h2>
+            <div class="row g-4">
+                <div class="col-md-4 fade-in">
+                    <div class="hobby-card">
+                        <h4 class="mb-3">요리(육식맨 시청)</h4>
+                            <a href="https://www.youtube.com/watch?v=ynFz3uTTUDI&ab_channel=%EC%9C%A1%EC%8B%9D%EB%A7%A8YOOXICMAN" target="_blank"> 
+                                <img src="./images/curry.jpg" alt="프로필 이미지" class="card-img mb-4 mb-md-0">
+                            </a>
+                        <br>
+                        <br>
+                        
+            
+                        <p class="mb-0">최근에는 육식맨 유튜브의 스프카레를 따라서 만들어봤습니다. <br> 아주 맛있어요! </p>
+                        
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="hobby-card">
+                        <h4 class="mb-3">운동</h4>
+                        <a href="https://youtu.be/lw4KwdatbPs?si=mYl9TSeuCoVLvC4L" target="_blank">
+                            <img src="./images/mill.jpg" alt="프로필 이미지" class="card-img mb-4 mb-md-0">
+                        </a>
+                        <br>
+                        <br>
+                        <p class="mb-0">페르시안 밀을 아시나요? <br> 일종의 명상과 같은 운동입니다. <br> 자기개발과 건강에 관심이 많습니다</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="hobby-card">
+                        <h4 class="mb-3">게임</h4>
+                            <img src="./images/lol1.jpg" alt="프로필 이미지" class="card-img mb-4 mb-md-0">
+                        <br>
+                        <br>
+                        <p class="mb-0">롤 칼바람나락을 자주합니다. 연패의 지옥에서 나를 꺼내주세요.. <br> <strong>대상혁</strong> T1 경기는 다 챙겨봤습니다. <br> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">공유하고 싶은 것</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="experience-item fade-in">
+                        <img src="./images/hamster1.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0">
+                        <img src="./images/hamster2.jpg" alt="프로필 이미지" class="profile-img mb-4 mb-md-0">
+                        <br>
+                        <br>
+                        <h4>2세대 햄쥐바리 <br>(24.10 ~ 25.1)</h4>
+                        <p>태어난지 3개월된 수컷 골든햄스터 입니다. <br>데려올때 친구들한테 장난치고 성격이 호쾌해보여서 데려왔는데, 겁이 굉장히 많아 아직 핸들링도 제대로 못하고있습니다. <br> 190L 햄스터 케이지에서 인간기준 1인 25평 아파트에서 지내게 해주고 있습니다. 주인은 원룸사는데..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">앞으로의 계획</h2>
+            <div class="future-plan fade-in">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h4 class="mb-4">단기 목표</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">• 프론트엔드 개발자로서의 실력 쌓기</li>
+                            <li class="mb-3">• 다양한 사람들과 커뮤니케이션</li>
+                            <li class="mb-3">• 다양한 프로젝트 경험</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mb-4">장기 목표</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">• 프론트엔드 개발자로 성장</li>
+                            <li class="mb-3">• 개발 컨퍼런스 발표자로 참여</li>
+                            <li class="mb-3">• 주니어 개발자 멘토링</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 스크롤 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    const triggerPoint = window.innerHeight * 0.8;
+                    
+                    if (rect.top <= triggerPoint) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+
+            // 초기 체크
+            checkFade();
+            
+            // 스크롤 이벤트
+            window.addEventListener('scroll', checkFade);
+        });
+    </script>
+</body>
+</html>
